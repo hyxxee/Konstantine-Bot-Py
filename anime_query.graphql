@@ -1,0 +1,27 @@
+query ($search: String) {
+    Media (search: $search, type: ANIME) {
+        title {
+            romaji
+            english
+            native
+        }
+        description
+        startDate {
+            year
+            month
+            day
+        }
+        endDate {
+            year
+            month
+            day
+        }
+        episodes
+        genres
+        averageScore
+        status
+        coverImage {
+            large
+        }
+    }
+}
