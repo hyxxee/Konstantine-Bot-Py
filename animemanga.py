@@ -29,6 +29,13 @@ def determine_season(month):
 def generate_random_color():
     return random.randint(0, 0xFFFFFF)
 
+# Format date for display in embed
+def format_date(day, month, year):
+    day_str = str(day) if day is not None else '?'
+    month_str = str(month) if month is not None else '?'
+    year_str = str(year) if year is not None else '?'
+    return f"{day_str}/{month_str}/{year_str}"
+
 # Fetch Anime info from Anilist API
 def fetch_anime_info(title):
     query = '''
@@ -126,19 +133,12 @@ def create_anime_embed(data):
     rankings_str = ', '.join(rankings) if rankings else 'No rankings available'
 
     # Format release dates with fallback
-    start_year = data['startDate'].get('year')
-    start_month = data['startDate'].get('month')
-    start_day = data['startDate'].get('day')
-    start_date = f"{start_day or '?'} / {start_month or '?'} / {start_year or '?'}"
-
-    end_year = data['endDate'].get('year') if data.get('endDate') else None
-    end_month = data['endDate'].get('month') if data.get('endDate') else None
-    end_day = data['endDate'].get('day') if data.get('endDate') else None
-    end_date = f"{end_day or '?'} / {end_month or '?'} / {end_year or '?'}"
+    start_date = format_date(data['startDate'].get('day'), data['startDate'].get('month'), data['startDate'].get('year'))
+    end_date = format_date(data['endDate'].get('day'), data['endDate'].get('month'), data['endDate'].get('year')) if data.get('endDate') else '?/?/?'
 
     # Try to create a release_date object if possible
     try:
-        release_date = datetime(start_year, start_month, start_day)
+        release_date = datetime(data['startDate'].get('year'), data['startDate'].get('month'), data['startDate'].get('day'))
     except (TypeError, ValueError):
         release_date = None
 
@@ -169,15 +169,8 @@ def create_manga_embed(data):
     rankings_str = ', '.join(rankings) if rankings else 'No rankings available'
 
     # Format release dates
-    start_year = data['startDate'].get('year')
-    start_month = data['startDate'].get('month')
-    start_day = data['startDate'].get('day')
-    start_date = f"{start_day or '?'} / {start_month or '?'} / {start_year or '?'}"
-
-    end_year = data['endDate'].get('year') if data.get('endDate') else None
-    end_month = data['endDate'].get('month') if data.get('endDate') else None
-    end_day = data['endDate'].get('day') if data.get('endDate') else None
-    end_date = f"{end_day or '?'} / {end_month or '?'} / {end_year or '?'}"
+    start_date = format_date(data['startDate'].get('day'), data['startDate'].get('month'), data['startDate'].get('year'))
+    end_date = format_date(data['endDate'].get('day'), data['endDate'].get('month'), data['endDate'].get('year')) if data.get('endDate') else '?/?/?'
 
     release_date_str = f"{start_date} - {end_date}"
 

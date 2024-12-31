@@ -1,2 +1,6 @@
+/__pycache__/
 bot_token.txt
-
+/backup/
+/myenv/
+/y/
+command_history.db
