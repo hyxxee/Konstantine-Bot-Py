@@ -32,3 +32,13 @@ cd Konstantine-Bot-Py
 
 # Instal dependensi
 
+# upload graphql anilist
+curl -X POST https://graphql.anilist.co \
+-H "Content-Type: application/json" \
+-d @<(cat <<EOF
+{
+    "query": "$(sed ':a;N;$!ba;s/\n/\\n/g' anime_query.graphql)",
+    "variables": $(cat variables.json)
+}
+EOF
+)
