@@ -23,22 +23,4 @@ bot discord untuk cek anime/manga.
 
 Instruksi untuk menginstal proyek ini di lingkungan lokal Anda.
 
-```bash
-# Clone repositori ini
-https://github.com/hyxxee/Konstantine-Bot-Py.git
-
-# Masuk ke direktori proyek
-cd Konstantine-Bot-Py
-
-# Instal dependensi
-
-# upload graphql anilist
-curl -X POST https://graphql.anilist.co \
--H "Content-Type: application/json" \
--d @<(cat <<EOF
-{
-    "query": "$(sed ':a;N;$!ba;s/\n/\\n/g' anime_query.graphql)",
-    "variables": $(cat variables.json)
-}
-EOF
-)
+coming soon
