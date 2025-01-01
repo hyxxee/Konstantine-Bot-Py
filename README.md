@@ -17,7 +17,7 @@ bot discord untuk cek anime/manga.
 ## Fitur
 
 - ?anime <nama anime> untuk cek anime
-- ?mamga <nama manga> untuk cek manga 
+- ?manga <nama manga> untuk cek manga 
 
 ## Instalasi
 
@@ -25,10 +25,10 @@ Instruksi untuk menginstal proyek ini di lingkungan lokal Anda.
 
 ```bash
 # Clone repositori ini
-git clone https://github.com/username/repo-name.git
+https://github.com/hyxxee/Konstantine-Bot-Py.git
 
 # Masuk ke direktori proyek
-cd repo-name
+cd Konstantine-Bot-Py
 
 # Instal dependensi
-npm install
+
