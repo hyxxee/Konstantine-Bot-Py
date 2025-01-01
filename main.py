@@ -3,7 +3,7 @@ from discord.ext import commands
 from config import BOT_PREFIX
 from animemanga import fetch_anime_info, create_anime_embed, fetch_manga_info, create_manga_embed
 from database import initialize_database, save_command
-
+from info import info
 # Load bot token
 with open('bot_token.txt', 'r') as file:
     TOKEN = file.read().strip()
@@ -43,5 +43,10 @@ async def manga(ctx, *, title: str):
         await ctx.send(embed=embed)
     else:
         await ctx.send("Manga not found.")
+
+ 
+@bot.command(name='info')
+async def info_command(ctx):
+    await info(ctx)
 
 bot.run(TOKEN)
